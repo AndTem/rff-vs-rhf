@@ -16,19 +16,16 @@ const FieldRegisterExample = () => {
     console.log('values', values);
   };
 
-  const [passwordValue, repeatPasswordValue, loginValue] = watch([
+  const [passwordValue, repeatPasswordValue] = watch([
     'password',
     'repeatPassword',
-    'login',
   ]);
 
-  useEffect(() => {
-    if (loginValue?.length > 2) {
-      setTimeout(() => {
-        setError('login', { message: 'Логин занят' });
-      }, 2000);
-    }
-  }, [loginValue]);
+  const handleClickVerifyLogin = () => {
+    setTimeout(() => {
+      setError('login', { message: 'Логин занят' });
+    }, 2000);
+  };
 
   useEffect(() => {
     if (repeatPasswordValue) {
@@ -39,7 +36,7 @@ const FieldRegisterExample = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      style={{ display: 'grid', justifyContent: 'center' }}
+      style={{ display: 'grid', justifyContent: 'center', gap: '16px' }}
     >
       <input
         {...register('login', {
@@ -50,6 +47,9 @@ const FieldRegisterExample = () => {
       {formState.errors.login?.message && (
         <p>{formState.errors.login?.message}</p>
       )}
+      <button type="button" onClick={handleClickVerifyLogin}>
+        Verify Login
+      </button>
       <input
         {...register('password', {
           maxLength: { value: 5, message: 'Не меньше 5' },

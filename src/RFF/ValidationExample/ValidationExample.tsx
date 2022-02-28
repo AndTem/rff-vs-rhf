@@ -5,6 +5,7 @@ type FormValues = {
   login: string;
   password: string;
   repeatPassword: string;
+  isInvalidLogin: boolean;
 };
 
 const focusOnErrors = createDecorator();
@@ -29,12 +30,16 @@ const repeatPasswordRule = (
   values?: FormValues
 ): string | null => (values?.password === value ? null : 'Invalid');
 
-const loginValidate = () =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve('Такой login уже есть');
-    }, 2000);
-  });
+const loginValidate = (
+  value: string | undefined,
+  values: any
+): string | null => {
+  if (values.isInvalidLogin) {
+    return 'Такой login уже есть';
+  }
+
+  return null;
+};
 
 const FieldRegisterExample = () => {
   const handleSubmit = (values: FormValues) => {
@@ -51,7 +56,7 @@ const FieldRegisterExample = () => {
       {(formProps) => (
         <form
           onSubmit={formProps.handleSubmit}
-          style={{ display: 'grid', justifyContent: 'center' }}
+          style={{ display: 'grid', justifyContent: 'center', gap: '16px' }}
         >
           <Field<FormValues['login']>
             name="login"
@@ -65,6 +70,16 @@ const FieldRegisterExample = () => {
               </>
             )}
           </Field>
+          <button
+            type="button"
+            onClick={() => {
+              setTimeout(() => {
+                formProps.form.change('isInvalidLogin', true);
+              }, 2000);
+            }}
+          >
+            Verify Login
+          </button>
           <Field<FormValues['password']>
             name="password"
             validate={compose(isRequiredRule, minLenRule)}
