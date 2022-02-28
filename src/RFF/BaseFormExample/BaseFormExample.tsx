@@ -1,4 +1,5 @@
-import { Field, Form, useField } from 'react-final-form';
+import { Field, Form, useField, useForm } from 'react-final-form';
+import { useEffect } from 'react';
 
 type FormValues = {
   login: string;
@@ -8,10 +9,15 @@ type FormValues = {
 const TextField = ({ name }: { name: string }) => {
   const field = useField(name);
 
+  const { change } = useForm();
+
+  useEffect(() => {
+    change('example', 22);
+  }, []);
+
   return <input {...field.input} />;
 };
 
- 
 const BaseFormExample = () => {
   const handleSubmit = (values: FormValues) => {
     console.log(values);

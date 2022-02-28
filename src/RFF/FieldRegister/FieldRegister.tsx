@@ -11,7 +11,6 @@ const TextField = ({ name }: { name: string }) => {
   return <input {...field.input} />;
 };
 
- 
 const FieldRegisterExample = () => {
   const handleSubmit = (values: FormValues) => {
     console.log(values);

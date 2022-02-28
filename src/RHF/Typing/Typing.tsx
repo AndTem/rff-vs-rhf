@@ -1,3 +1,6 @@
+// @ts-nocheck
+/* eslint-disable */
+
 import { useController, useForm, useWatch } from 'react-hook-form';
 
 type FormValues = {
@@ -6,12 +9,18 @@ type FormValues = {
   repeatPassword: string;
 };
 
-const FieldRegisterExample = () => {
-  const { handleSubmit, control, formState, watch } = useForm<FormValues>();
+const TypingExample = () => {
+  const { handleSubmit, control, formState, watch, setValue } =
+    useForm<FormValues>();
 
   const { fieldState } = useController({
-    name: 'repeatPassword',
+    name: 'repeatPasword',
     control,
+  });
+
+  // context
+  const login = useController<FormValues>({
+    name: 'login',
   });
 
   const onSubmit = (values: FormValues) => {
@@ -20,7 +29,11 @@ const FieldRegisterExample = () => {
 
   const loginValue = watch('login');
 
+  loginValue.map();
+
   const loginValue2 = useWatch({ name: 'login', control });
+
+  setValue('login', false);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -31,4 +44,4 @@ const FieldRegisterExample = () => {
   );
 };
 
-export default FieldRegisterExample;
+export default TypingExample;

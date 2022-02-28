@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { ValidationExample as RFFValidationExample } from './RFF/ValidationExample';
-// import { Benchmark as RFFBenchmark } from './RFF/Benchmark';
-import { ValidationExample as RHFValidationExample } from './RHF/ValidationExample';
-// import { Benchmark as RHFBenchmark } from './RHF/Benchmark';
+// import { ValidationExample as RFFValidationExample } from './RFF/ValidationExample';
+// import { ValidationExample as RHFValidationExample } from './RHF/ValidationExample';
+import { Benchmark as RFFBenchmark } from './RFF/Benchmark';
+import { Benchmark as RHFBenchmark } from './RHF/Benchmark';
 
 function App() {
   return (
@@ -14,22 +14,22 @@ function App() {
         justifyContent: 'center',
       }}
     >
-      <section>
-        <h2 style={{ textAlign: 'center' }}>React Final Form</h2>
-        <RFFValidationExample />
-      </section>
-      <section>
-        <h2 style={{ textAlign: 'center' }}>React Hook Form</h2>
-        <RHFValidationExample />
-      </section>
       {/*<section>*/}
       {/*  <h2 style={{ textAlign: 'center' }}>React Final Form</h2>*/}
-      {/*  <RFFBenchmark />*/}
+      {/*  <RFFValidationExample />*/}
       {/*</section>*/}
       {/*<section>*/}
       {/*  <h2 style={{ textAlign: 'center' }}>React Hook Form</h2>*/}
-      {/*  <RHFBenchmark />*/}
+      {/*  <RHFValidationExample />*/}
       {/*</section>*/}
+      <section>
+        <h2 style={{ textAlign: 'center' }}>React Final Form</h2>
+        <RFFBenchmark />
+      </section>
+      <section>
+        <h2 style={{ textAlign: 'center' }}>React Hook Form</h2>
+        <RHFBenchmark />
+      </section>
     </main>
   );
 }
